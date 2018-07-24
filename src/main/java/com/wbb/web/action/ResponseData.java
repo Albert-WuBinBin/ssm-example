@@ -1,9 +1,12 @@
 package com.wbb.web.action;
 
+import java.io.Serializable;
+
 import com.wbb.enums.EnumErrorCode;
 
-public class ResponseData<T> {
+public class ResponseData<T> implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer status;
 	private Integer code;
 	private String msg;
@@ -47,14 +50,14 @@ public class ResponseData<T> {
 
 	public static <T> ResponseData<T> createResponseData(EnumErrorCode errorCode, T data) {
 		Builder<T> builder = new Builder<T>();
-		return builder.setStatus(errorCode.getValue())
+		return builder.setStatus(errorCode.getHttpStatus().value())
 				.setErrorCode(errorCode)
 				.setMsg(errorCode.getMsg())
 				.setData(data).build();
 	}
 	public static <T> ResponseData<T> createErrorResponseData(EnumErrorCode errorCode, T data , String msg) {
 		Builder<T> builder = new Builder<T>();
-		return builder.setStatus(errorCode.getValue())
+		return builder.setStatus(errorCode.getHttpStatus().value())
 				.setErrorCode(errorCode)
 				.setMsg(msg)
 				.setData(data).build();

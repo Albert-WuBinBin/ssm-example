@@ -12,10 +12,10 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
-	Object handlerException(Exception e){
-		System.out.println(e.getMessage());
-		ResponseData<Object> data = ResponseData.createErrorResponseData(EnumErrorCode.INTERNAL_SERVER_ERROR, null,e.getMessage());
-		return data;
+	public Object handlerException(Exception e){
+		
+		return  ResponseData.createErrorResponseData(
+				EnumErrorCode.INTERNAL_SERVER_ERROR, null,e.getMessage());
 	}
 	
 }

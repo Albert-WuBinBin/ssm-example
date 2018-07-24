@@ -20,7 +20,7 @@ public class TestAction {
 	public Object test1(){
 		Cost cost = new Cost();
 		cost.setMoney(100);
-		costService.insert7(cost);
+		//costService.insert7(cost);
 		return ResponseData.createResponseData(EnumErrorCode.OK, null);
 	}
 }

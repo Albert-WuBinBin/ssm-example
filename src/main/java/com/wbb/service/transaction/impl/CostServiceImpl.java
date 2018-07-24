@@ -17,22 +17,22 @@ public class CostServiceImpl implements CostService{
 	private CostMapper costMapper;
 
 	/*
-	 *  ÔÚ springµÄ TransactionDefinition½Ó¿ÚÖÐÒ»¹²¶¨ÒåÁËÆßÖÖÊÂÎñ´«²¥ÊôÐÔ£ºÄ¬ÈÏPROPAGATION_REQUIRED
-		PROPAGATION_REQUIRED -- Ö§³Öµ±Ç°ÊÂÎñ£¬Èç¹ûµ±Ç°Ã»ÓÐÊÂÎñ£¬¾ÍÐÂ½¨Ò»¸öÊÂÎñ¡£ÕâÊÇ×î³£¼ûµÄÑ¡Ôñ¡£ 
-		PROPAGATION_SUPPORTS -- Ö§³Öµ±Ç°ÊÂÎñ£¬Èç¹ûµ±Ç°Ã»ÓÐÊÂÎñ£¬¾ÍÒÔ·ÇÊÂÎñ·½Ê½Ö´ÐÐ¡£ 
-		PROPAGATION_MANDATORY -- Ö§³Öµ±Ç°ÊÂÎñ£¬Èç¹ûµ±Ç°Ã»ÓÐÊÂÎñ£¬¾ÍÅ×³öÒì³£¡£ 
-		PROPAGATION_REQUIRES_NEW -- ÐÂ½¨ÊÂÎñ£¬Èç¹ûµ±Ç°´æÔÚÊÂÎñ£¬°Ñµ±Ç°ÊÂÎñ¹ÒÆð¡£ 
-		PROPAGATION_NOT_SUPPORTED -- ÒÔ·ÇÊÂÎñ·½Ê½Ö´ÐÐ²Ù×÷£¬Èç¹ûµ±Ç°´æÔÚÊÂÎñ£¬¾Í°Ñµ±Ç°ÊÂÎñ¹ÒÆð¡£ 
-		PROPAGATION_NEVER -- ÒÔ·ÇÊÂÎñ·½Ê½Ö´ÐÐ£¬Èç¹ûµ±Ç°´æÔÚÊÂÎñ£¬ÔòÅ×³öÒì³£¡£ 
-		PROPAGATION_NESTED -- Èç¹ûµ±Ç°´æÔÚÊÂÎñ£¬ÔòÔÚÇ¶Ì×ÊÂÎñÄÚÖ´ÐÐ¡£Èç¹ûµ±Ç°Ã»ÓÐÊÂÎñ£¬
-		Ôò½øÐÐÓëPROPAGATION_REQUIREDÀàËÆµÄ²Ù×÷¡£
+	 *  ï¿½ï¿½ springï¿½ï¿½ TransactionDefinitionï¿½Ó¿ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ´«²ï¿½ï¿½ï¿½ï¿½Ô£ï¿½Ä¬ï¿½ï¿½PROPAGATION_REQUIRED
+		PROPAGATION_REQUIRED -- Ö§ï¿½Öµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ñ£¬¾ï¿½ï¿½Â½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î³£ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ 
+		PROPAGATION_SUPPORTS -- Ö§ï¿½Öµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ñ£¬¾ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Ö´ï¿½Ð¡ï¿½ 
+		PROPAGATION_MANDATORY -- Ö§ï¿½Öµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ñ£¬¾ï¿½ï¿½×³ï¿½ï¿½ì³£ï¿½ï¿½ 
+		PROPAGATION_REQUIRES_NEW -- ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ£¬°Ñµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+		PROPAGATION_NOT_SUPPORTED -- ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Ö´ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ£¬¾Í°Ñµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+		PROPAGATION_NEVER -- ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Ö´ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×³ï¿½ï¿½ì³£ï¿½ï¿½ 
+		PROPAGATION_NESTED -- ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PROPAGATION_REQUIREDï¿½ï¿½ï¿½ÆµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public void insert(Cost cost,boolean b) throws Exception {
 		System.out.println("insert:"+costMapper.insert(cost));
 		if(!b){
-			throw new Exception("×Ô¶¨Òå´íÎó");
+			throw new Exception("ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
@@ -64,7 +64,7 @@ public class CostServiceImpl implements CostService{
 	public void insert3(Cost cost,boolean b) throws Exception {
 		System.out.println("insert3:"+costMapper.insert(cost));
 		if(!b){
-			throw new Exception("×Ô¶¨Òå´íÎó");
+			throw new Exception("ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 	@Override
