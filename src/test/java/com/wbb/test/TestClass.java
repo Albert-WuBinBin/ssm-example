@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Propagation;
 
 import com.wbb.bean.Cost;
 import com.wbb.service.transaction.CostService;
@@ -46,7 +45,7 @@ public class TestClass {
 		System.out.println("after insert:"+costService.sum());
 	}
 	/**
-	 * Í¬Ò»¸öservice,ÀïÍâ¶¼ÊÇPropagation.REQUIRED,Àï²ã±»trycatch£¬Àï²ãÅ×Òì³£,ÀïÍâ¶¼Ìá½»
+	 * åŒä¸€ä¸ªservice,é‡Œå¤–éƒ½æ˜¯Propagation.REQUIRED,é‡Œå±‚è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œå¤–éƒ½æäº¤
 	 */
 	@Test
 	public void test2(){
@@ -71,7 +70,7 @@ public class TestClass {
 		System.out.println("after insert:"+costService.sum());
 	}
 	/**
-	 * Í¬Ò»¸öservice,ÀïÍâ¶¼ÊÇPropagation.REQUIRED,Àï²ã²»±»trycatch£¬Àï²ãÅ×Òì³£,ÀïÍâ¶¼²»Ìá½»
+	 * åŒä¸€ä¸ªservice,é‡Œå¤–éƒ½æ˜¯Propagation.REQUIRED,é‡Œå±‚ä¸è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œå¤–éƒ½ä¸æäº¤
 	 */
 	@Test
 	public void test3(){
@@ -96,7 +95,7 @@ public class TestClass {
 		System.out.println("after insert:"+costService.sum());
 	}
 	/**
-	 * Í¬Ò»¸öservice£¬ÍâPropagation.REQUIREDÀïPropagation.REQUIRES_NEW£¬Àï²ã±»trycatch£¬Àï²ãÅ×Òì³£,ÀïÍâ¶¼Ìá½»
+	 * åŒä¸€ä¸ªserviceï¼Œå¤–Propagation.REQUIREDé‡ŒPropagation.REQUIRES_NEWï¼Œé‡Œå±‚è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œå¤–éƒ½æäº¤
 	 */
 	@Test
 	public void test4(){
@@ -122,7 +121,7 @@ public class TestClass {
 	}
 	/**
 	 * 	
-	 * Í¬Ò»¸öservice£¬ÍâPropagation.REQUIREDÀïPropagation.REQUIRES_NEW£¬Àï²ã²»±»trycatch£¬Àï²ãÅ×Òì³£,ÀïÍâ¶¼²»Ìá½»
+	 * åŒä¸€ä¸ªserviceï¼Œå¤–Propagation.REQUIREDé‡ŒPropagation.REQUIRES_NEWï¼Œé‡Œå±‚ä¸è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œå¤–éƒ½ä¸æäº¤
 	 */
 	@Test
 	public void test5(){
@@ -147,7 +146,7 @@ public class TestClass {
 		System.out.println("after insert:"+costService.sum());
 	}
 	/**
-	 * Á½¸öservice,£¬ÍâPropagation.REQUIREDÀïPropagation.REQUIRES_NEW,Àï²ã±»trycatch£¬Àï²ãÅ×Òì³£,Àï²»Ìá½»,ÍâÌá½»
+	 * ä¸¤ä¸ªservice,ï¼Œå¤–Propagation.REQUIREDé‡ŒPropagation.REQUIRES_NEW,é‡Œå±‚è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œä¸æäº¤,å¤–æäº¤
 	 */
 	@Test
 	public void test6(){
@@ -172,7 +171,7 @@ public class TestClass {
 		System.out.println("after insert:"+costService.sum());
 	}
 	/**
-	 * Á½¸öservice,£¬ÍâPropagation.REQUIREDÀïPropagation.REQUIRES_NEW,Àï²ã²»±»trycatch£¬Àï²ãÅ×Òì³£,ÀïÍâ¶¼²»Ìá½»
+	 * ä¸¤ä¸ªservice,ï¼Œå¤–Propagation.REQUIREDé‡ŒPropagation.REQUIRES_NEW,é‡Œå±‚ä¸è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œå¤–éƒ½ä¸æäº¤
 	 */
 	@Test
 	public void test8(){
@@ -197,7 +196,7 @@ public class TestClass {
 		System.out.println("after insert:"+costService.sum());
 	}
 	/**
-	 * Á½¸öservice,£¬ÀïÍâPropagation.REQUIRED,Àï²ã±»trycatch£¬Àï²ãÅ×Òì³£,ÀïÍâ¶¼²»Ìá½»
+	 * ä¸¤ä¸ªservice,ï¼Œé‡Œå¤–Propagation.REQUIRED,é‡Œå±‚è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œå¤–éƒ½ä¸æäº¤
 	 */
 	@Test
 	public void test7(){
@@ -223,7 +222,7 @@ public class TestClass {
 	}
 	/**
 	 * 	/**
-	 * Á½¸öservice,£¬ÀïÍâPropagation.REQUIRED,Àï²ã²»±»trycatch£¬Àï²ãÅ×Òì³£,ÀïÍâ¶¼²»Ìá½»
+	 * ä¸¤ä¸ªservice,ï¼Œé‡Œå¤–Propagation.REQUIRED,é‡Œå±‚ä¸è¢«trycatchï¼Œé‡Œå±‚æŠ›å¼‚å¸¸,é‡Œå¤–éƒ½ä¸æäº¤
 	 */
 	@Test
 	public void test9(){
@@ -231,7 +230,7 @@ public class TestClass {
 		try {
 			Cost cost = new Cost();
 			cost.setMoney(100);
-			costService2.insert4(cost, true);
+			costService.insert7(cost);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -241,7 +240,7 @@ public class TestClass {
 		try {
 			Cost cost = new Cost();
 			cost.setMoney(100);
-			costService2.insert4(cost, false);
+			costService.insert7(cost);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

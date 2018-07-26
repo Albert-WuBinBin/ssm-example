@@ -20,7 +20,15 @@ public class TestAction {
 	public Object test1(){
 		Cost cost = new Cost();
 		cost.setMoney(100);
-		//costService.insert7(cost);
+		costService.insert7(cost);
 		return ResponseData.createResponseData(EnumErrorCode.OK, null);
+	}
+
+	@RequestMapping(value="test2",method=RequestMethod.GET)
+	public Object test2() throws Exception{
+		Cost cost = new Cost();
+		cost.setMoney(100);
+		costService.insert(cost,true);
+		return ResponseData.createResponseData(EnumErrorCode.OK, costService.sum());
 	}
 }
