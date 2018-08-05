@@ -256,7 +256,9 @@ public class TestClass {
 		}
 		System.out.println("after insert:"+costService.sum());
 	}
-	
+	/**
+	 * 动态切换数据源
+	 */
 	@Test
 	public void testDynamicDataSource(){
 		List<DataSourceDO> dataSourceDOList = dataSourceMapper.getAllDataSources();
