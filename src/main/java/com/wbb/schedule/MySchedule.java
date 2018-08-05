@@ -14,7 +14,7 @@ public class MySchedule {
 	@Resource
 	CostService costService;
 
-	@Scheduled(cron="0/10 * * * * *")
+	//@Scheduled(cron="0/10 * * * * *")
 	public void insert() throws Exception {
 		Cost cost = new Cost();
 		cost.setMoney(50);

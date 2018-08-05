@@ -1,5 +1,7 @@
 package com.wbb.test;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -8,13 +10,19 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.wbb.bean.Cost;
+import com.wbb.bean.DataSourceDO;
+import com.wbb.dataSource.dynamic.DataSourceBeanBuilder;
+import com.wbb.dataSource.dynamic.DataSourceContext;
+import com.wbb.mapper.DataSourceMapper;
 import com.wbb.service.transaction.CostService;
 import com.wbb.service.transaction.CostService2;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
+		"classpath:spring.xml",
 		"classpath:spring-mvc.xml",
-		"classpath:spring-mybatis.xml"
+		//"classpath:spring-mybatis.xml",
+		"classpath:spring-dynamic-mybatis.xml"
 		})
 public class TestClass {
 
@@ -22,6 +30,8 @@ public class TestClass {
 	CostService costService;
 	@Resource
 	CostService2 costService2;
+	@Resource
+	DataSourceMapper dataSourceMapper;
 	@Test
 	public void test1(){
 		System.out.println("before insert:"+costService.sum());
@@ -245,5 +255,30 @@ public class TestClass {
 			e.printStackTrace();
 		}
 		System.out.println("after insert:"+costService.sum());
+	}
+	
+	@Test
+	public void testDynamicDataSource(){
+		List<DataSourceDO> dataSourceDOList = dataSourceMapper.getAllDataSources();
+		System.out.println(dataSourceDOList.toString());
+	        for (DataSourceDO dataSourceDO : dataSourceDOList) {
+	            DataSourceBeanBuilder builder = new DataSourceBeanBuilder(
+	            		dataSourceDO.getDatasourceName(),
+	                    dataSourceDO.getDatabaseIp(),
+	                    dataSourceDO.getDatabasePort(),
+	                    dataSourceDO.getDatabaseName(),
+	                    dataSourceDO.getUsername(),
+	                    dataSourceDO.getPassword());
+	            DataSourceContext.setDataSource(builder);
+	            Cost cost = new Cost();
+				cost.setMoney(100);
+				try {
+					costService.insert(cost, true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            DataSourceContext.clearDataSource();
+	        }
 	}
 }
