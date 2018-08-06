@@ -2,9 +2,6 @@ package com.wbb.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by yizhen on 16-12-18.
- */
 public class DataSourceDO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

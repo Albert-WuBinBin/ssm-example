@@ -1,17 +1,29 @@
 package com.wbb.dataSource.dynamic;
 
-
 /**
- * Created by yizhen on 16-12-18.
+ * 动态数据源工具类
  */
 public class DataSourceContext {
-    //使用该方法设置数据源
-    public static void setDataSource(DataSourceBeanBuilder dataSourceBeanBuilder) {
-        DataSourceHolder.setDataSource(dataSourceBeanBuilder);
-    }
+	
+	private static ThreadLocal<DataSourceBean> threadLocal = new InheritableThreadLocal<DataSourceBean>();
 
-    //使用该方法清除数据源，清除后将使用默认数据源
-    public static void clearDataSource() {
-        DataSourceHolder.clearDataSource();
-    }
+	/**
+	 * 获取数据源
+	 */
+	public static DataSourceBean getDataSource() {
+		return threadLocal.get();
+	}
+	/**
+	 * 设置数据源
+	 */
+	public static void setDataSource(DataSourceBean dataSourceBean) {
+		threadLocal.set(dataSourceBean);
+	}
+	/**
+	 * 清除数据源
+	 * 清除后,数据源为默认时间
+	 */
+	public static void clearDataSource() {
+		threadLocal.remove();
+	}
 }
