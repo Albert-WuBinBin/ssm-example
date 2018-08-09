@@ -91,4 +91,10 @@ public class CostServiceImpl implements CostService {
 		costMapper.insert(c);
 		int a = 1 / 0;
 	}
+
+	@Override
+	public int insert8(Cost cost) {
+		System.out.println("insert8");
+		return costMapper.insert(cost);
+	}
 }

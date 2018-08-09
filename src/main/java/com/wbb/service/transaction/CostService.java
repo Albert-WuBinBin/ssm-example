@@ -11,4 +11,5 @@ public interface CostService {
 	void insert6(Cost cost,boolean b) throws Exception ;
 	int sum();
 	void insert7(Cost cost);
+	int insert8(Cost cost);
 }

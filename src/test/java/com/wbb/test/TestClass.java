@@ -250,4 +250,10 @@ public class TestClass {
 		}
 		System.out.println("after insert:"+costService.sum());
 	}
+	@Test
+	public void testAop() {
+		Cost cost = new Cost();
+		cost.setMoney(100);
+		costService.insert8(cost);
+	}
 }
