@@ -8,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.wbb.bean.Cost;
-import com.wbb.mapper.DataSourceMapper;
 import com.wbb.service.transaction.CostService;
 import com.wbb.service.transaction.CostService2;
 
@@ -24,8 +23,6 @@ public class TestClass {
 	CostService costService;
 	@Resource
 	CostService2 costService2;
-	@Resource
-	DataSourceMapper dataSourceMapper;
 	@Test
 	public void test1(){
 		System.out.println("before insert:"+costService.sum());

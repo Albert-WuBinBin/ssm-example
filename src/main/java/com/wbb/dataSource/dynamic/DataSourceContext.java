@@ -23,7 +23,7 @@ public class DataSourceContext {
 	 * 清除数据源
 	 * 清除后,数据源为默认时间
 	 */
-	public static void clearDataSource() {
+	public static void toDefault() {
 		threadLocal.remove();
 	}
 }

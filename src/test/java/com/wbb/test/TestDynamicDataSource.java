@@ -45,14 +45,7 @@ public class TestDynamicDataSource {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			DataSourceContext.clearDataSource();
-		}
-		Cost cost = new Cost();
-		cost.setMoney(100);
-		try {
-			costService.insert(cost, true);
-		} catch (Exception e) {
-			e.printStackTrace();
+			DataSourceContext.toDefault();
 		}
 	}
 }
