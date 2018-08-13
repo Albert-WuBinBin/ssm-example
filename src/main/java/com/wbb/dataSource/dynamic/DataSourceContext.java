@@ -1,7 +1,7 @@
 package com.wbb.dataSource.dynamic;
 
 /**
- * 动态数据源工具类
+ * 数据源操作类
  */
 public class DataSourceContext {
 	
