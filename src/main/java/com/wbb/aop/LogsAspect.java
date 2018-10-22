@@ -11,14 +11,15 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-//@Aspect
-//@Component
-public class LogsAspect {
+@Aspect
+@Component
+public class LogsAspect implements Ordered {
 	/**
 	 * (1)pointcut切入点
 	 * (2)Before:在目标方法被调用之前做增强处理,@Before只需要指定切入点表达式即可
@@ -28,41 +29,49 @@ public class LogsAspect {
 	 * (5)After:在目标方法完成之后做增强，无论目标方法时候成功完成。@After可以指定一个切入点表达式
 	 * (6)Around:环绕通知,在目标方法完成前后做增强处理,环绕通知是最重要的通知类型,像事务,日志等都是环绕通知,注意编程中核心是一个ProceedingJoinPoint
 	 */
-	@Pointcut(value = "execution(public Object com.wbb.web.exception.GlobalExceptionHandler.handlerException(..))")
-	public void pointcut() {
-	}
+//	@Pointcut(value = "execution(public Object com.wbb.web.exception.GlobalExceptionHandler.handlerException(..))")
+//	public void pointcut() {
+//	}
 
+	@Pointcut(value= "execution(* com.wbb.service.transaction.impl.*.*(..))")
+	public void pointcut() {}
+	
 	@Before(value = "com.wbb.aop.LogsAspect.pointcut()")
 	public void logStart(JoinPoint joinPoint) {
 		String name = joinPoint.getSignature().getName();
-		System.out.println(name+",运行前,参数:"+Arrays.asList(joinPoint.getArgs()));
+		System.out.println(name+",LogsAspect @Before运行前,参数:"+Arrays.asList(joinPoint.getArgs()));
 	}
 
 	@After(value = "pointcut()")
 	public void logEnd(JoinPoint joinPoint) {
 		String name = joinPoint.getSignature().getName();
-		System.out.println(name+",运行结束,参数:"+Arrays.asList(joinPoint.getArgs()));
+		System.out.println(name+",LogsAspect @After运行结束,参数:"+Arrays.asList(joinPoint.getArgs()));
 	}
 
 	@AfterReturning(value = "pointcut()",returning="object")
 	public void logReturn(Object object) {
-		System.out.println("运行后返回:"+JSONObject.toJSONString(object));
+		System.out.println("LogsAspect @AfterReturning运行后返回:"+JSONObject.toJSONString(object));
 	}
 
 	@AfterThrowing(value = "pointcut()",throwing="exception")
 	public void logAfterThrowing(Exception exception) {
-		System.out.println("运行异常:"+JSON.toJSONString(exception));
+		System.out.println("LogsAspect @AfterThrowing运行异常:"+JSON.toJSONString(exception));
 	}
 
-	@Around("pointcut()")
-	public Object around(ProceedingJoinPoint pjp) {
-		System.out.println("AOP Aronud before...");
-		try {
-			return pjp.proceed();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		System.out.println("AOP Aronud after...");
-		return null;
+//	@Around("pointcut()")
+//	public Object around(ProceedingJoinPoint pjp) {
+//		System.out.println("AOP Aronud before...");
+//		try {
+//			return pjp.proceed();
+//		} catch (Throwable e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("AOP Aronud after...");
+//		return null;
+//	}
+
+	@Override
+	public int getOrder() {
+		return 1;
 	}
 }
