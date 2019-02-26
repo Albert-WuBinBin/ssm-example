@@ -15,11 +15,10 @@ import com.wbb.dataSource.dynamic.DataSourceBean;
 import com.wbb.dataSource.dynamic.DataSourceBean.DataSourceBeanBuilder;
 import com.wbb.dataSource.dynamic.DataSourceContext;
 import com.wbb.mapper.DataSourceMapper;
-import com.wbb.service.transaction.CostService;
+import com.wbb.service.CostService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mvc.xml",
-		"classpath:spring-dynamic-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring-mvc.xml", "classpath:spring-dynamic-mybatis.xml" })
 public class TestDynamicDataSource {
 
 	@Resource
@@ -34,9 +33,9 @@ public class TestDynamicDataSource {
 	public void testDynamicDataSource() {
 		List<DataSourceDO> dataSourceDOList = dataSourceMapper.getAllDataSources();
 		for (DataSourceDO dataSourceDO : dataSourceDOList) {
-			DataSourceBean dataSourceBean = new DataSourceBean(new DataSourceBeanBuilder(dataSourceDO.getDatasourceName(),
-					dataSourceDO.getDatabaseIp(), dataSourceDO.getDatabasePort(), dataSourceDO.getDatabaseName(),
-					dataSourceDO.getUsername(), dataSourceDO.getPassword()));
+			DataSourceBean dataSourceBean = new DataSourceBean(new DataSourceBeanBuilder(
+					dataSourceDO.getDatasourceName(), dataSourceDO.getDatabaseIp(), dataSourceDO.getDatabasePort(),
+					dataSourceDO.getDatabaseName(), dataSourceDO.getUsername(), dataSourceDO.getPassword()));
 			DataSourceContext.setDataSource(dataSourceBean);
 			Cost cost = new Cost();
 			cost.setMoney(100);
